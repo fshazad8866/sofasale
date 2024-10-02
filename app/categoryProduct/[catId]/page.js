@@ -1,30 +1,16 @@
 // app/categoryProduct/[catId]/page.js
-"use client";
 
 import axios from "axios";
-import { useState, useEffect } from "react";
+
 import Link from "next/link"; // Ensure to use Link from next/link
 import { URL } from "@/app/Utils"; // Adjust the path according to your folder structure
 import Header from "@/app/components/Header"; // Import your Header component
 
-const CategoryProducts = ({ params }) => {
+const CategoryProducts = async ({ params }) => {
   const { catId } = params; // Get the dynamic route parameter
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetchProducts();
-  }, [catId]);
-
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get(
-        `${URL}/api/products?populate=*&filters[category][id][$eq]=${catId}`
-      );
-      setProducts(response.data.data);
-    } catch (error) {
-      console.log("error", error);
-    }
-  };
+  const response = await axios.get(
+    `${URL}/api/products?populate=*&filters[category][id][$eq]=${catId}`
+  );
 
   return (
     <>
@@ -37,8 +23,8 @@ const CategoryProducts = ({ params }) => {
 
         <div className="container">
           <div className="row gy-4">
-            {products.length > 0 ? (
-              products.map((prod) => (
+            {response.data.data.length > 0 ? (
+              response.data.data.map((prod) => (
                 <div className="col-lg-4" key={prod.id}>
                   <Link href={`/productDetail/${prod.id}`}>
                     <article className="position-relative h-100">
