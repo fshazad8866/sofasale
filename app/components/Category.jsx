@@ -1,5 +1,6 @@
 import axios from "axios";
 import { URL } from "../Utils";
+import Link from "next/link";
 const Category = async () => {
   const response = await axios.get(`${URL}/api/categories?populate=*`);
 
@@ -35,6 +36,7 @@ const Category = async () => {
                 data-aos-delay="200"
                 key={cat.id} // Ensure unique key for each item
               >
+                {console.log("resss", cat.attributes.slug)}
                 <div className="service-item">
                   <div className="img">
                     <img
@@ -48,12 +50,12 @@ const Category = async () => {
                     />
                   </div>
                   <div className="details position-relative">
-                    <a
-                      href={`/categoryProduct/${cat.id}`}
+                    <Link
+                      href={`/categoryProduct/${cat.attributes.slug}`}
                       className="stretched-link"
                     >
                       <h3>{cat.attributes.name}</h3>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

@@ -8,8 +8,13 @@ import Header from "@/app/components/Header"; // Import your Header component
 
 const CategoryProducts = async ({ params }) => {
   const { catId } = params; // Get the dynamic route parameter
+  console.log("cass", params);
+  // console.log(
+  //   `${URL}/api/products?populate=*&filters[category][id][$eq]=${catId}`
+  // );
+
   const response = await axios.get(
-    `${URL}/api/products?populate=*&filters[category][id][$eq]=${catId}`
+    `${URL}/api/products?populate=*&filters[category][slug][$eq]=${catId}`
   );
 
   return (
@@ -26,7 +31,7 @@ const CategoryProducts = async ({ params }) => {
             {response.data.data.length > 0 ? (
               response.data.data.map((prod) => (
                 <div className="col-lg-4" key={prod.id}>
-                  <Link href={`/productDetail/${prod.id}`}>
+                  <Link href={`/productDetail/${prod.attributes.slug}`}>
                     <article className="position-relative h-100">
                       {console.log("proddd", prod.attributes.sofa)}
                       <div className="post-img position-relative overflow-hidden">
@@ -53,7 +58,7 @@ const CategoryProducts = async ({ params }) => {
                 </div>
               ))
             ) : (
-              <p>Loading products...</p>
+              <p>No products Found</p>
             )}
           </div>
         </div>
@@ -63,3 +68,11 @@ const CategoryProducts = async ({ params }) => {
 };
 
 export default CategoryProducts;
+export async function generateStaticParams() {
+  const response = await axios.get(`${URL}/api/categories`);
+  const allCategories = response.data.data;
+  // console.log("ssss products", allCategories);
+  return allCategories.map((cat) => {
+    return { catId: cat.attributes.slug };
+  });
+}
