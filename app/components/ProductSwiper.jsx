@@ -8,7 +8,6 @@ import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { URL } from "../Utils";
 const ProductSwiper = ({ product }) => {
-  console.log("produccc", product);
   return (
     <div>
       <Swiper

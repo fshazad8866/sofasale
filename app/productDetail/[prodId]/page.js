@@ -8,12 +8,14 @@ const ProductDetail = async (props) => {
   console.log("pros", props);
   const { prodId } = props.params;
 
-  console.log(`${URL}/api/products/${prodId}?populate[images][populate]=*`);
-  const response = await axios.get(
-    `${URL}/api/products/${prodId}?populate[images][populate]=*`
+  console.log(
+    `${URL}/api/products?filters[slug]=${prodId}?populate[images][populate]=*`
   );
-
-  const product = response.data.data;
+  const response = await axios.get(
+    `${URL}/api/products?filters[slug]=${prodId}&populate[images][populate]=*`
+  );
+  console.log("ress", response.data.data[0]);
+  const product = response.data.data[0];
 
   return (
     <>
@@ -80,7 +82,12 @@ export async function generateStaticParams() {
   console.log("ssss products");
 
   // Return the array of product ids to statically generate each page
-  return products.map((product) => ({
-    prodId: product.id.toString(),
-  }));
+  return products.map((product) => {
+    // console.log("ssssdfss", product.attributes.slug);
+    return {
+      prodId: product.attributes.slug,
+
+      // title: title,
+    };
+  });
 }
