@@ -24,6 +24,7 @@ const ProductSwiper = ({ product }) => {
         {product?.attributes?.images?.map((image, index) => (
           <SwiperSlide key={index}>
             <img
+              style={{ width: "100%", height: "400px" }}
               src={`${URL}${image?.images?.data?.[0]?.attributes?.url}`}
               alt={product.attributes?.title}
             />

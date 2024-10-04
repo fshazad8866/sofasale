@@ -5,16 +5,11 @@ import { URL } from "@/app/Utils";
 import ProductSwiper from "@/app/components/ProductSwiper";
 
 const ProductDetail = async (props) => {
-  console.log("pros", props);
   const { prodId } = props.params;
 
-  console.log(
-    `${URL}/api/products?filters[slug]=${prodId}?populate[images][populate]=*`
-  );
   const response = await axios.get(
     `${URL}/api/products?filters[slug]=${prodId}&populate[images][populate]=*`
   );
-  console.log("ress", response.data.data[0]);
   const product = response.data.data[0];
 
   return (
@@ -28,46 +23,78 @@ const ProductDetail = async (props) => {
               <li>
                 <a href="/">Home</a>
               </li>
-              <li className="current">{product.attributes?.title}</li>
+              <li className="current">{product?.attributes?.title}</li>
             </ol>
           </nav>
         </div>
       </div>
+
       <section id="portfolio-details" className="portfolio-details section">
         <div className="container" data-aos="fade-up">
-          <ProductSwiper product={product} />
+          <div className="row">
+            {/* Swiper on the left side */}
+            <div className="col-lg-6">
+              <ProductSwiper product={product} />
+            </div>
 
-          <div className="row justify-content-between gy-4 mt-4">
-            <div className="col-lg-8" data-aos="fade-up">
-              <div className="portfolio-description">
-                <p>{product.attributes?.description}</p>
+            {/* Product Information on the right side */}
+            <div className="col-lg-6">
+              <div
+                style={{
+                  // position: "relative",
+                  // height: "400px",
+                  display: "flex",
+                  flexDirection: "column",
+                  // justifyContent: "flex-end",
+                }}
+              >
+                <div
+                  style={{
+                    padding: "20px",
+                    backgroundColor: "#fff",
+                    border: "1px solid #ddd",
+                    boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+                  }}
+                >
+                  <h3>Product information</h3>
+                  <ul>
+                    <li>
+                      <strong>Price:</strong> £{product?.attributes?.price}
+                    </li>
+                    <li>
+                      <strong>Fabrics Available:</strong>
+                      <ul>
+                        {product?.attributes?.images?.map((img, index) => (
+                          <li key={index}>{img?.fabric}</li>
+                        ))}
+                      </ul>
+                    </li>
+                    <li>
+                      <strong>Colours available:</strong>
+                      <ul>
+                        {product?.attributes?.images?.map((img, index) => (
+                          <li key={index}>{img?.color}</li>
+                        ))}
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <div className="col-lg-3" data-aos="fade-up" data-aos-delay="100">
-              <div className="portfolio-info">
-                <h3>Product information</h3>
-                <ul>
-                  <li>
-                    <strong>Price:</strong> £{product.attributes?.price}
-                  </li>
-                  <li>
-                    <strong>Fabrics Available:</strong>
-                    {product?.attributes?.images?.map((img, index) => (
-                      <li key={index}>{img?.fabric}</li>
-                    ))}
-                  </li>
-                  <li>
-                    <strong>Colours available:</strong>
-                    {product?.attributes?.images?.map((img, index) => (
-                      <li key={index}>{img?.color}</li>
-                    ))}
-                  </li>
-                </ul>
+          </div>
+
+          {/* Product Description below the swiper and product info */}
+          <div className="row mt-4">
+            <div className="col-lg-12">
+              <div className="portfolio-description">
+                <h3>Description</h3>
+                <p>{product?.attributes?.description}</p>
               </div>
             </div>
           </div>
         </div>
       </section>
+
       <Footer />
     </>
   );
@@ -79,15 +106,10 @@ export default ProductDetail;
 export async function generateStaticParams() {
   const response = await axios.get(`${URL}/api/products`);
   const products = response.data.data;
-  console.log("ssss products");
 
-  // Return the array of product ids to statically generate each page
   return products.map((product) => {
-    // console.log("ssssdfss", product.attributes.slug);
     return {
       prodId: product.attributes.slug,
-
-      // title: title,
     };
   });
 }
