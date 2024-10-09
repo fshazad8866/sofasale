@@ -1,11 +1,11 @@
 import React from "react";
 
-const Header = () => {
+const Header = ({ data }) => {
   return (
     <header id="header" className="header d-flex align-items-center sticky-top">
       <div className="container-fluid container-xl position-relative d-flex align-items-center">
         <a href="/" className="logo d-flex align-items-center me-auto">
-          <h1 className="sitename">Sofa</h1>
+          <h1 className="sitename">{data?.logo_name}</h1>
         </a>
 
         <nav id="navmenu" className="navmenu">
@@ -16,13 +16,13 @@ const Header = () => {
               </a>
             </li>
             <li>
-              <a href="index.html#about">About</a>
+              <a href="#contact">Contact</a>
             </li>
             <li>
               <a href="/allproducts">Products</a>
             </li>
             <li>
-              <a href="index.html#portfolio">New In</a>
+              <a href="#best">Best Selling</a>
             </li>
           </ul>
           <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>

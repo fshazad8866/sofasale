@@ -7,19 +7,19 @@ import Crousel from "./Crousel";
 import Contact from "./Contact";
 import FAQ from "./FAQ";
 
-const Main = () => {
+const Main = ({ data }) => {
   return (
     <main class="main">
-      <Crousel />
+      <Crousel data={data} />
 
       <Category />
       <BestSelling />
 
       <CustomerImage />
 
-      <FAQ />
+      <FAQ data={data} />
 
-      <Contact />
+      <Contact data={data} />
     </main>
   );
 };

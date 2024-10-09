@@ -1,6 +1,6 @@
 import React from "react";
 
-const Footer = () => {
+const Footer = ({ data }) => {
   return (
     <>
       <footer id="footer" className="footer position-relative">
@@ -11,13 +11,12 @@ const Footer = () => {
                 <span className="sitename">Sofa</span>
               </a>
               <div className="footer-contact pt-3">
-                <p>A108 Adam Street</p>
-                <p>New York, NY 535022</p>
+                <p>{data?.address}</p>
                 <p className="mt-3">
-                  <strong>Phone:</strong> <span>+1 5589 55488 55</span>
+                  <strong>Phone:</strong> <span>{data?.phone}</span>
                 </p>
                 <p>
-                  <strong>Email:</strong> <span>info@example.com</span>
+                  <strong>Email:</strong> <span>{data?.email}</span>
                 </p>
               </div>
             </div>
@@ -43,27 +42,31 @@ const Footer = () => {
               </ul>
             </div>
 
-            <div className="col-lg-4 col-md-12">
-              <h4>Follow Us</h4>
-              <p>
-                Cras fermentum odio eu feugiat lide par naso tierra videa magna
-                derita valies
-              </p>
-              <div className="social-links d-flex">
-                <a href="">
+            {data?.fb_url && (
+              <div className="col-lg-4 col-md-12">
+                <h4>Follow Us</h4>
+                <p>
+                  Cras fermentum odio eu feugiat lide par naso tierra videa
+                  magna derita valies
+                </p>
+                <div className="social-links d-flex">
+                  {/* <a href="">
                   <i className="bi bi-twitter-x"></i>
-                </a>
-                <a href="">
-                  <i className="bi bi-facebook"></i>
-                </a>
-                <a href="">
+                </a> */}
+                  {data?.fb_url && (
+                    <a href={data?.fb_url} target="_blank">
+                      <i className="bi bi-facebook"></i>
+                    </a>
+                  )}
+                  {/* <a href="">
                   <i className="bi bi-instagram"></i>
                 </a>
                 <a href="">
                   <i className="bi bi-linkedin"></i>
-                </a>
+                </a> */}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
         <div className="container copyright text-center mt-4">

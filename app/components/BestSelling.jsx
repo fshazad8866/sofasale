@@ -8,7 +8,7 @@ const BestSelling = async () => {
   );
 
   return (
-    <section id="blog-posts" className="blog-posts section">
+    <section id="best" className="blog-posts section">
       <div className="container section-title" data-aos="fade-up">
         <h2>Best Selling</h2>
         <p>These are the most sold products</p>
@@ -17,37 +17,7 @@ const BestSelling = async () => {
       <div className="container">
         <div className="row gy-4">
           {BestSelling.data.data.length > 0 ? (
-            BestSelling.data.data.map((prod) => (
-              <div className="col-lg-4" key={prod.id}>
-                {console.log(
-                  "allprod",
-                  prod?.attributes?.SofaImage?.data?.attributes?.url
-                )}
-                <a href="dylansofa.html">
-                  <Link href={`/productDetail/${prod.attributes.slug}`}>
-                    <article className="position-relative h-100">
-                      <div className="post-img position-relative overflow-hidden">
-                        <img
-                          src={`${URL}${prod?.attributes?.SofaImage?.data?.attributes?.url}`}
-                          className="img-fluid"
-                          alt=""
-                        />
-                      </div>
-
-                      <div className="meta d-flex align-items-end">
-                        <span className="post-date">
-                          £{prod.attributes.price}
-                        </span>
-                      </div>
-
-                      <div className="post-content d-flex flex-column">
-                        <h3 className="post-title">{prod.attributes.title}</h3>
-                      </div>
-                    </article>
-                  </Link>
-                </a>
-              </div>
-            ))
+            BestSelling.data.data.map((prod) => <Product prod={prod} />)
           ) : (
             <p>Loading products...</p> // Loading state while fetching data
           )}
@@ -58,3 +28,58 @@ const BestSelling = async () => {
 };
 
 export default BestSelling;
+
+function Product({ prod }) {
+  let colors = new Set();
+  prod.attributes.images?.map((each) => {
+    colors.add(each.colorhexacode || "black");
+  });
+  colors = Array.from(colors);
+  console.log({ colors });
+  return (
+    <>
+      <div className="col-lg-4" key={prod.id}>
+        <Link href={`/productDetail/${prod.attributes.slug}`}>
+          <article className="position-relative h-100">
+            <div className="post-img position-relative overflow-hidden">
+              <img
+                src={`${URL}${prod?.attributes?.SofaImage?.data?.attributes?.url}`}
+                className="img-fluid"
+                alt=""
+              />
+            </div>
+
+            <div className="meta d-flex align-items-end">
+              <span className="post-date">£{prod.attributes.price}</span>
+            </div>
+
+            <div className="post-content d-flex flex-column">
+              <h3 className="post-title">{prod.attributes.title}</h3>
+            </div>
+
+            <div
+              class="post-content d-flex"
+              style={{
+                paddingTop: 0,
+                flexDirection: "row",
+                gap: "5px",
+              }}
+            >
+              {colors?.map((each) => (
+                <div
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    borderRadius: "50%",
+                    background: each,
+                    border: "3px solid #eb5d1f",
+                  }}
+                ></div>
+              ))}
+            </div>
+          </article>
+        </Link>
+      </div>
+    </>
+  );
+}

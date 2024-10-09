@@ -1,6 +1,6 @@
 import React from "react";
 
-const Contact = () => {
+const Contact = ({ data }) => {
   return (
     <section id="contact" className="contact section">
       <div className="container section-title" data-aos="fade-up">
@@ -23,7 +23,7 @@ const Contact = () => {
                 <i className="bi bi-geo-alt flex-shrink-0"></i>
                 <div>
                   <h3>Address</h3>
-                  <p>Birmingham, UK</p>
+                  <p>{data?.address}</p>
                 </div>
               </div>
 
@@ -35,7 +35,7 @@ const Contact = () => {
                 <i className="bi bi-telephone flex-shrink-0"></i>
                 <div>
                   <h3>Call Us</h3>
-                  <p>+44 7534 497719</p>
+                  <p>{data?.phone}</p>
                 </div>
               </div>
 
@@ -47,7 +47,7 @@ const Contact = () => {
                 <i className="bi bi-envelope flex-shrink-0"></i>
                 <div>
                   <h3>Email Us</h3>
-                  <p>info@example.com</p>
+                  <p>{data?.email}</p>
                 </div>
               </div>
             </div>
