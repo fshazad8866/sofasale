@@ -70,7 +70,7 @@ const ProductDetail = async (props) => {
                   fabrics={fabrics}
                   title={product.attributes?.title}
                   price={`£${product?.attributes?.price}`}
-                  description={`£${product?.attributes?.description.slice(
+                  description={`${product?.attributes?.description?.slice(
                     0,
                     250
                   )}`}
