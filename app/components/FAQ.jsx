@@ -12,8 +12,8 @@ const FAQ = ({ data }) => {
         <div className="row">
           <div className="col-lg-12" data-aos="fade-up" data-aos-delay="100">
             <div className="faq-container">
-              {data?.faqs?.map((each) => (
-                <div className="faq-item faq-active">
+              {data?.faqs?.map((each, index) => (
+                <div className="faq-item faq-active" key={index}>
                   <h3>{each.question}</h3>
                   <div className="faq-content">
                     <p>{each.answer}</p>

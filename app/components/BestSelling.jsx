@@ -1,3 +1,4 @@
+import React from "react";
 import axios from "axios";
 import { URL } from "../Utils";
 import Link from "next/link";
@@ -17,7 +18,11 @@ const BestSelling = async () => {
       <div className="container">
         <div className="row gy-4">
           {BestSelling.data.data.length > 0 ? (
-            BestSelling.data.data.map((prod) => <Product prod={prod} />)
+            BestSelling.data.data.map((prod, index) => (
+              <React.Fragment key={index}>
+                <Product prod={prod} />
+              </React.Fragment>
+            ))
           ) : (
             <p>Loading products...</p> // Loading state while fetching data
           )}
@@ -67,6 +72,7 @@ function Product({ prod }) {
             >
               {colors?.map((each) => (
                 <div
+                  key={each}
                   style={{
                     width: "40px",
                     height: "40px",
