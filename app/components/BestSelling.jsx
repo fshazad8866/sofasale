@@ -61,7 +61,7 @@ function Product({ prod }) {
             <div className="post-content d-flex flex-column">
               <h3 className="post-title">{prod.attributes.title}</h3>
             </div>
-
+            {/* 
             <div
               class="post-content d-flex"
               style={{
@@ -74,15 +74,15 @@ function Product({ prod }) {
                 <div
                   key={each}
                   style={{
-                    width: "40px",
-                    height: "40px",
+                    width: "30px",
+                    height: "30px",
                     borderRadius: "50%",
                     background: each,
                     border: "3px solid #eb5d1f",
                   }}
                 ></div>
               ))}
-            </div>
+            </div> */}
           </article>
         </Link>
       </div>

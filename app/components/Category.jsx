@@ -38,25 +38,25 @@ const Category = async () => {
               >
                 {console.log("resss", cat.attributes.slug)}
                 <div className="service-item">
-                  <div className="img">
-                    <img
-                      src={`${URL}${cat.attributes.image.data.attributes.url}`}
-                      // src={
-                      //   cat.attributes.image.data.attributes.url ||
-                      //   "assets/img/default.png"
-                      // } // Handle image if it exists
-                      className="img-fluid"
-                      alt={cat.attributes.name || "Category Image"}
-                    />
-                  </div>
-                  <div className="details position-relative">
-                    <Link
-                      href={`/categoryProduct/${cat.attributes.slug}`}
-                      className="stretched-link"
-                    >
+                  <Link
+                    href={`/categoryProduct/${cat.attributes.slug}`}
+                    className="stretched-link"
+                  >
+                    <div className="img">
+                      <img
+                        src={`${URL}${cat.attributes.image.data.attributes.url}`}
+                        // src={
+                        //   cat.attributes.image.data.attributes.url ||
+                        //   "assets/img/default.png"
+                        // } // Handle image if it exists
+                        className="img-fluid"
+                        alt={cat.attributes.name || "Category Image"}
+                      />
+                    </div>
+                    <div className="details position-relative">
                       <h3>{cat.attributes.name}</h3>
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 </div>
               </div>
             ))

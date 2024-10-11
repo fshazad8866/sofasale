@@ -1,6 +1,8 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 const FAQ = ({ data }) => {
+  const [active, setActive] = useState(0);
   return (
     <section id="faq" className="faq section light-background">
       <div className="container section-title" data-aos="fade-up">
@@ -13,7 +15,13 @@ const FAQ = ({ data }) => {
           <div className="col-lg-12" data-aos="fade-up" data-aos-delay="100">
             <div className="faq-container">
               {data?.faqs?.map((each, index) => (
-                <div className="faq-item faq-active" key={index}>
+                <div
+                  onClick={() => {
+                    setActive(index);
+                  }}
+                  className={`faq-item ${active === index ? "faq-active" : ""}`}
+                  key={index}
+                >
                   <h3>{each.question}</h3>
                   <div className="faq-content">
                     <p>{each.answer}</p>

@@ -5,6 +5,7 @@ import axios from "axios";
 import Link from "next/link"; // Ensure to use Link from next/link
 import { URL } from "@/app/Utils"; // Adjust the path according to your folder structure
 import Header from "@/app/components/Header"; // Import your Header component
+import Footer from "@/app/components/Footer";
 
 const CategoryProducts = async ({ params }) => {
   const { catId } = params; // Get the dynamic route parameter
@@ -17,9 +18,13 @@ const CategoryProducts = async ({ params }) => {
     `${URL}/api/products?populate=*&filters[category][slug][$eq]=${catId}`
   );
 
+  const { data } = await axios.get(
+    `${URL}/api/detail?populate[slider][populate]=*&populate[faqs][populate]=*`
+  );
+
   return (
     <>
-      <Header />
+      <Header data={data?.data.attributes} />
       <section id="blog-posts" className="blog-posts section">
         <div className="container section-title" data-aos="fade-up">
           <h2>Products in {catId}</h2>
@@ -63,6 +68,7 @@ const CategoryProducts = async ({ params }) => {
           </div>
         </div>
       </section>
+      <Footer data={data?.data.attributes} />
     </>
   );
 };

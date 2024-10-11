@@ -36,8 +36,8 @@ const Crousel = ({ data }) => {
               <div class="carousel-container">
                 <h2>{data.Title}</h2>
                 <p>{data.Description}</p>
-                <a href="#featured-services" class="btn-get-started">
-                  Shop Now
+                <a href="#contact" class="btn-get-started">
+                  Contact Us
                 </a>
               </div>
             </div>

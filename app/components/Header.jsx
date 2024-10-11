@@ -28,9 +28,9 @@ const Header = ({ data }) => {
           <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 
-        <a className="btn-getstarted" href="index.html#about">
+        {/* <a className="btn-getstarted" href="index.html#about">
           Sales - UP TO 30% Off
-        </a>
+        </a> */}
       </div>
     </header>
   );

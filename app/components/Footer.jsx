@@ -6,7 +6,7 @@ const Footer = ({ data }) => {
       <footer id="footer" className="footer position-relative">
         <div className="container footer-top">
           <div className="row gy-4">
-            <div className="col-lg-4 col-md-6 footer-about">
+            <div className="col-lg-6 col-md-6 footer-about">
               <a href="index.html" className="d-flex align-items-center">
                 <span className="sitename">Sofa</span>
               </a>
@@ -21,7 +21,7 @@ const Footer = ({ data }) => {
               </div>
             </div>
 
-            <div className="col-lg-4 col-md-3 footer-links">
+            {/* <div className="col-lg-4 col-md-3 footer-links">
               <h4>Useful Links</h4>
               <ul>
                 <li>
@@ -40,24 +40,22 @@ const Footer = ({ data }) => {
                   <a href="#">Terms of service</a>
                 </li>
               </ul>
-            </div>
+            </div> */}
 
             {data?.fb_url && (
-              <div className="col-lg-4 col-md-12">
+              <div className="col-lg-6 col-md-12">
                 <h4>Follow Us</h4>
-                <p>
-                  Cras fermentum odio eu feugiat lide par naso tierra videa
-                  magna derita valies
-                </p>
+                <p>You can directly contact us via social medial</p>
                 <div className="social-links d-flex">
                   {/* <a href="">
                   <i className="bi bi-twitter-x"></i>
                 </a> */}
-                  {data?.fb_url && (
-                    <a href={data?.fb_url} target="_blank">
-                      <i className="bi bi-facebook"></i>
-                    </a>
-                  )}
+                  <a href={data?.fb_url} target="_blank">
+                    <i className="bi bi-facebook"></i>
+                  </a>
+                  <a href={data?.whatsapp_url} target="_blank">
+                    <i className="bi bi-whatsapp"></i>
+                  </a>
                   {/* <a href="">
                   <i className="bi bi-instagram"></i>
                 </a>

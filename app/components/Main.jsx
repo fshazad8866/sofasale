@@ -11,14 +11,10 @@ const Main = ({ data }) => {
   return (
     <main class="main">
       <Crousel data={data} />
-
       <Category />
       <BestSelling />
-
       <CustomerImage />
-
       <FAQ data={data} />
-
       <Contact data={data} />
     </main>
   );

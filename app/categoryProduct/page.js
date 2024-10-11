@@ -1,10 +1,16 @@
 import React from "react";
 import Header from "../components/Header";
+import { URL } from "../Utils";
+import axios from "axios";
+import Footer from "../components/Footer";
 
-const CategoryProducts = () => {
+const CategoryProducts = async () => {
+  const { data } = await axios.get(
+    `${URL}/api/detail?populate[slider][populate]=*&populate[faqs][populate]=*`
+  );
   return (
     <>
-      <Header />
+      <Header data={data?.data.attributes} />
       <section id="blog-posts" className="blog-posts section">
         <div className="container section-title" data-aos="fade-up">
           <h2>All Products</h2>
@@ -37,6 +43,7 @@ const CategoryProducts = () => {
           </div>
         </div>
       </section>
+      <Footer data={data?.data.attributes} />
     </>
   );
 };

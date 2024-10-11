@@ -11,7 +11,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 const CustomerImage = () => {
   return (
     <>
-      <section id="gallery" className="gallery section">
+      {/* <section id="gallery" className="gallery section">
         <div className="container section-title" data-aos="fade-up">
           <h2>Customer Images</h2>
           <p>These are images of products, cliked by real customers</p>
@@ -165,7 +165,7 @@ const CustomerImage = () => {
             </div>
           </SwiperSlide>
         </Swiper>
-      </section>
+      </section> */}
     </>
   );
 };
