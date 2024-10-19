@@ -193,6 +193,7 @@ const ProductCard = ({
           style={{
             paddingTop: 0,
             flexDirection: "row",
+
             gap: "5px",
           }}
         >
@@ -205,6 +206,7 @@ const ProductCard = ({
                 height: "30px",
                 borderRadius: "50%",
                 background: each.split(":::")[0],
+                cursor: "pointer",
                 border: "3px solid #eb5d1f",
               }}
             ></div>
