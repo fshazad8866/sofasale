@@ -1,15 +1,18 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 const Header = ({ data }) => {
-  const pathname = usePathname(); // Get the current pathname
-  const router = useRouter(); // Use the new router
+  const pathname = usePathname();
+  const router = useRouter();
+  const [activeSection, setActiveSection] = useState(""); // State to track active section
 
   // Function to handle link clicks
   const handleNavigation = (e, id) => {
     e.preventDefault(); // Prevent default anchor behavior
+    setActiveSection(id); // Set the clicked section as active
+
     if (pathname === "/") {
       // If on the home page, scroll to the section
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -28,6 +31,7 @@ const Header = ({ data }) => {
       const element = document.getElementById(scrollToId);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
+        setActiveSection(scrollToId); // Set the section as active after scrolling
       }
     }
   }, []);
@@ -42,7 +46,10 @@ const Header = ({ data }) => {
         <nav id="navmenu" className="navmenu">
           <ul>
             <li>
-              <a href="/" className={pathname === "/" ? "active" : ""}>
+              <a
+                href="/"
+                className={pathname === "/" && !activeSection ? "active" : ""}
+              >
                 Home
               </a>
             </li>
@@ -50,15 +57,25 @@ const Header = ({ data }) => {
               <a
                 href="#contact"
                 onClick={(e) => handleNavigation(e, "contact")}
+                className={activeSection === "contact" ? "active" : ""}
               >
                 Contact
               </a>
             </li>
             <li>
-              <a href="/allproducts">Products</a>
+              <a
+                href="/allproducts"
+                className={pathname === "/allproducts" ? "active" : ""}
+              >
+                Products
+              </a>
             </li>
             <li>
-              <a href="#best" onClick={(e) => handleNavigation(e, "best")}>
+              <a
+                href="#best"
+                onClick={(e) => handleNavigation(e, "best")}
+                className={activeSection === "best" ? "active" : ""}
+              >
                 Best Selling
               </a>
             </li>
