@@ -20,7 +20,7 @@ const ProductDetail = async (props) => {
   let colors = new Set();
   let fabrics = new Set();
 
-  product.attributes.images?.map((each) => {
+  product?.attributes?.images?.map((each) => {
     colors.add(`${each.colorhexacode}:::${each.color}`);
     fabrics.add(`${each.fabric}`);
   });
@@ -68,7 +68,7 @@ const ProductDetail = async (props) => {
                   colors={colors}
                   whatsppLink={whatsppLink}
                   fabrics={fabrics}
-                  title={product.attributes?.title}
+                  title={product?.attributes?.title}
                   price={`£${product?.attributes?.price}`}
                   description={`${product?.attributes?.description?.slice(
                     0,
