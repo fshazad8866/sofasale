@@ -31,7 +31,7 @@ const Allproducts = async () => {
             response.data.data.map((prod) => (
               <div className="col-lg-4" key={prod.id}>
                 <a href="dylansofa.html">
-                  <Link href={`/productDetail/${prod.id}`}>
+                  <Link href={`/productDetail/${prod.attributes.slug}`}>
                     <article className="position-relative h-100">
                       <div className="post-img position-relative overflow-hidden">
                         <img

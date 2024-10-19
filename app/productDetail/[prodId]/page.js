@@ -174,7 +174,7 @@ const ProductCard = ({
       </p>
       <p style={styles.description}>{description}</p>
 
-      <div className="d-flex align-items-center mb-3">
+      {/* <div className="d-flex align-items-center mb-3">
         <label htmlFor="quantity" style={styles.quantity}>
           <strong>Fabrics:</strong>
         </label>
@@ -183,7 +183,7 @@ const ProductCard = ({
             <option key={each}>{each}</option>
           ))}
         </select>
-      </div>
+      </div> */}
 
       <div className="d-flex align-items-center mb-3">
         <strong style={{ marginRight: "5%" }}>Color:</strong>
