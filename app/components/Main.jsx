@@ -11,6 +11,8 @@ const Main = ({ data }) => {
   return (
     <main class="main">
       <Crousel data={data} />
+
+      {/* <p style={{ background: "red", width: "100%", height: "20px" }}>hello</p> */}
       <Category />
       <BestSelling />
       <CustomerImage />

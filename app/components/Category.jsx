@@ -37,7 +37,7 @@ const Category = async () => {
                 key={cat.id} // Ensure unique key for each item
               >
                 {console.log("resss", cat.attributes.slug)}
-                <div className="service-item">
+                <div className="service-item" style={{ position: "relative" }}>
                   <Link
                     href={`/categoryProduct/${cat.attributes.slug}`}
                     className="stretched-link"

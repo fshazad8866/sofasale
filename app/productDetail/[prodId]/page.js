@@ -212,51 +212,6 @@ const ProductCard = ({
             ></div>
           ))}
         </div>
-        {/* <div
-          className="form-check form-check-inline"
-          style={styles.sizeOptions}
-        >
-          <input
-            className="form-check-input"
-            type="radio"
-            name="size"
-            id="size-sm"
-            value="SM"
-          />
-          <label className="form-check-label" htmlFor="size-sm">
-            SM
-          </label>
-        </div>
-        <div
-          className="form-check form-check-inline"
-          style={styles.sizeOptions}
-        >
-          <input
-            className="form-check-input"
-            type="radio"
-            name="size"
-            id="size-md"
-            value="MD"
-          />
-          <label className="form-check-label" htmlFor="size-md">
-            MD
-          </label>
-        </div>
-        <div
-          className="form-check form-check-inline"
-          style={styles.sizeOptions}
-        >
-          <input
-            className="form-check-input"
-            type="radio"
-            name="size"
-            id="size-xxl"
-            value="XXL"
-          />
-          <label className="form-check-label" htmlFor="size-xxl">
-            XXL
-          </label>
-        </div> */}
       </div>
 
       <div className="d-flex">
