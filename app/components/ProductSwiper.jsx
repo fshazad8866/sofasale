@@ -8,11 +8,12 @@ import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { URL } from "../Utils";
 
-const ProductSwiper = ({ product }) => {
+const ProductSwiper = ({ product, selectedColor }) => {
   const [isZoomed, setIsZoomed] = useState(false);
 
   // Function to handle the zoom toggle on click
-  const handleZoomClick = () => {
+  const handleZoomClick = (e) => {
+    e.preventDefault();
     setIsZoomed(!isZoomed);
   };
 
@@ -30,43 +31,56 @@ const ProductSwiper = ({ product }) => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper2"
       >
-        {product?.attributes?.images?.map((image, index) => (
-          <SwiperSlide key={index}>
-            <div
-              className={`swiper-image-container ${isZoomed ? "zoomed" : ""}`}
-              onClick={handleZoomClick}
-            >
-              <img
-                style={{ width: "100%", height: "400px" }}
-                src={`${URL}${image?.images?.data?.[0]?.attributes?.url}`}
-                alt={product.attributes?.title}
-                className="swiper-image"
-              />
-            </div>
-          </SwiperSlide>
-        ))}
+        {product?.attributes?.images
+          ?.filter((image) => {
+            if (!selectedColor) return true;
+            return image.color === selectedColor.split(":::")[1];
+          })
+          ?.map((image, index) => (
+            <SwiperSlide key={index}>
+              <div
+                className={`swiper-image-container ${isZoomed ? "zoomed" : ""}`}
+                style={{
+                  overflow: "hidden",
+                  cursor: isZoomed ? "zoom-out" : "zoom-in",
+                }}
+                onClick={handleZoomClick}
+              >
+                <img
+                  style={{
+                    width: "100%",
+                    height: "400px",
+                    transition: "transform 0.3s ease",
+                  }}
+                  src={`${URL}${image?.images?.data?.[0]?.attributes?.url}`}
+                  alt={product.attributes?.title}
+                  className="swiper-image"
+                />
+              </div>
+            </SwiperSlide>
+          ))}
       </Swiper>
 
       <style jsx>{`
         .swiper-image-container {
           overflow: hidden;
-          cursor: zoom-in;
         }
 
         .swiper-image-container img {
           transition: transform 0.3s ease;
         }
 
-        .swiper-image-container:hover img {
+        .swiper-image-container:not(.zoomed) img:hover {
           transform: scale(1.1); /* Zoom on hover */
-        }
-
-        .swiper-image-container.zoomed {
-          cursor: zoom-out;
         }
 
         .swiper-image-container.zoomed img {
           transform: scale(2); /* 100% zoom on click */
+          cursor: zoom-out;
+        }
+
+        .swiper-image-container:not(.zoomed) {
+          cursor: zoom-in;
         }
       `}</style>
     </div>
