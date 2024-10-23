@@ -63,7 +63,9 @@ export default function ProductDescription({ product }) {
                   <p>{dimentiondescription}</p>
 
                   <img
-                    style={{ width: active !== "Dimention" ? "0" : "500px" }}
+                    style={{
+                      width: active !== "Dimention" ? "0" : "500px",
+                    }}
                     src={`${URL}${dimentionimage}`}
                   />
                 </div>
