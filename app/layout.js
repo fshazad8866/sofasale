@@ -1,7 +1,7 @@
 import localFont from "next/font/local";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.min.css";
-
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
