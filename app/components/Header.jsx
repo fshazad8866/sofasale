@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
-const Header = ({ data }) => {
+const Header = ({ data, whatsappLink }) => {
   const pathname = usePathname();
   const router = useRouter();
   const [activeSection, setActiveSection] = useState(""); // State to track active section
@@ -83,9 +83,10 @@ const Header = ({ data }) => {
           <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
         <a
-          href="https://wa.me/17059108964"
+          href={whatsappLink}
           class="whatsapp-widget"
           target="_blank"
+          el="noopener noreferrer"
         >
           <Image
             src="/assets/img/whatsapp.png"

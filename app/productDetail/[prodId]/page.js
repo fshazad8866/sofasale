@@ -34,7 +34,7 @@ const ProductDetail = async (props) => {
 
   return (
     <>
-      <Header data={data?.data.attributes} />
+      <Header data={data?.data.attributes} whatsappLink={whatsppLink} />
       <div className="page-title" data-aos="fade">
         <div className="container d-lg-flex justify-content-between align-items-center">
           <h1 className="mb-2 mb-lg-0">Product Details</h1>
