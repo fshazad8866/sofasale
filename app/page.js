@@ -12,9 +12,11 @@ export default async function Home(props) {
   );
   const slider = data?.attributes?.slider || [];
   const faqs = data?.attributes?.faqs || [];
+  const whatsppLink = data?.data?.attributes?.whatsapp_url;
+
   return (
     <>
-      <Header data={data?.data.attributes} />
+      <Header data={data?.data.attributes} whatsppLink={whatsppLink} />
       <Main data={data?.data.attributes} />
       <Footer data={data?.data.attributes} />
     </>
