@@ -47,7 +47,7 @@ const Crousel = ({ data }) => {
           ))}
         </Swiper>
 
-        <div class="featured container">
+        {/* <div class="featured container">
           <div class="row gy-4">
             <div
               class="col-lg-3 d-flex"
@@ -109,7 +109,7 @@ const Crousel = ({ data }) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </section>
     </>
   );

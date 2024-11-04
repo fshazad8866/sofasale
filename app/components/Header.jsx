@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-
+import Image from "next/image";
 const Header = ({ data }) => {
   const pathname = usePathname();
   const router = useRouter();
@@ -82,6 +82,18 @@ const Header = ({ data }) => {
           </ul>
           <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
+        <a
+          href="https://wa.me/17059108964"
+          class="whatsapp-widget"
+          target="_blank"
+        >
+          <Image
+            src="/assets/img/whatsapp.png"
+            width={50}
+            height={50}
+            alt="Picture of the author"
+          />
+        </a>
       </div>
     </header>
   );
