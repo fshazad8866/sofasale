@@ -2,27 +2,25 @@
 
 import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { Navbar, Nav } from "react-bootstrap";
 import Image from "next/image";
+
 const Header = ({ data, whatsppLink }) => {
   const pathname = usePathname();
   const router = useRouter();
-  const [activeSection, setActiveSection] = useState(""); // State to track active section
+  const [activeSection, setActiveSection] = useState("");
 
-  // Function to handle link clicks
   const handleNavigation = (e, id) => {
-    e.preventDefault(); // Prevent default anchor behavior
-    setActiveSection(id); // Set the clicked section as active
+    e.preventDefault();
+    setActiveSection(id);
 
     if (pathname === "/") {
-      // If on the home page, scroll to the section
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     } else {
-      // If not on the home page, navigate to home with the id as a query parameter
       router.push(`/?scrollTo=${id}`);
     }
   };
 
-  // Effect to handle scrolling when coming from another page
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const scrollToId = urlParams.get("scrollTo");
@@ -31,62 +29,69 @@ const Header = ({ data, whatsppLink }) => {
       const element = document.getElementById(scrollToId);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
-        setActiveSection(scrollToId); // Set the section as active after scrolling
+        setActiveSection(scrollToId);
       }
     }
   }, []);
 
   return (
-    <header id="header" className="header d-flex align-items-center sticky-top">
+    <Navbar
+      expand="lg"
+      bg="light"
+      variant="light"
+      sticky="top"
+      collapseOnSelect
+    >
       <div className="container-fluid container-xl position-relative d-flex align-items-center">
-        <a href="/" className="logo d-flex align-items-center me-auto">
+        <Navbar.Brand href="/" className="d-flex align-items-center me-auto">
           <h1 className="sitename">{data?.logo_name}</h1>
-        </a>
+        </Navbar.Brand>
 
-        <nav id="navmenu" className="navmenu">
-          <ul>
-            <li>
-              <a
-                href="/"
-                className={pathname === "/" && !activeSection ? "active" : ""}
-              >
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                href="#contact"
-                onClick={(e) => handleNavigation(e, "contact")}
-                className={activeSection === "contact" ? "active" : ""}
-              >
-                Contact
-              </a>
-            </li>
-            <li>
-              <a
-                href="/allproducts"
-                className={pathname === "/allproducts" ? "active" : ""}
-              >
-                Products
-              </a>
-            </li>
-            <li>
-              <a
-                href="#best"
-                onClick={(e) => handleNavigation(e, "best")}
-                className={activeSection === "best" ? "active" : ""}
-              >
-                Best Selling
-              </a>
-            </li>
-          </ul>
-          <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
+        <Navbar.Toggle aria-controls="navbarNav" />
+        <Navbar.Collapse id="navbarNav">
+          <Nav className="ms-auto">
+            <Nav.Link
+              href="/"
+              className={`${
+                pathname === "/" && !activeSection ? "active-link" : ""
+              } nav-item-custom me-3`}
+            >
+              Home
+            </Nav.Link>
+            <Nav.Link
+              href="#contact"
+              onClick={(e) => handleNavigation(e, "contact")}
+              className={`${
+                activeSection === "contact" ? "active-link" : ""
+              } nav-item-custom me-3`}
+            >
+              Contact
+            </Nav.Link>
+            <Nav.Link
+              href="/allproducts"
+              className={`${
+                pathname === "/allproducts" ? "active-link" : ""
+              } nav-item-custom me-3`}
+            >
+              Products
+            </Nav.Link>
+            <Nav.Link
+              href="#best"
+              onClick={(e) => handleNavigation(e, "best")}
+              className={`${
+                activeSection === "best" ? "active-link" : ""
+              } nav-item-custom me-3`}
+            >
+              Best Selling
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+
         <a
           href={whatsppLink}
           className="whatsapp-widget"
           target="_blank"
-          el="noopener noreferrer"
+          rel="noopener noreferrer"
         >
           <Image
             src="/assets/img/whatsapp.png"
@@ -96,7 +101,7 @@ const Header = ({ data, whatsppLink }) => {
           />
         </a>
       </div>
-    </header>
+    </Navbar>
   );
 };
 
