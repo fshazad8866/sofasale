@@ -5,7 +5,6 @@ const Footer = ({ data }) => {
     <>
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8656809050578035"
      crossorigin="anonymous"></script>
-<!-- ads -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-8656809050578035"
