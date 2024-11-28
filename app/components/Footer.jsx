@@ -3,6 +3,18 @@ import React from "react";
 const Footer = ({ data }) => {
   return (
     <>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8656809050578035"
+     crossorigin="anonymous"></script>
+<!-- ads -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8656809050578035"
+     data-ad-slot="7876909065"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
       <footer id="footer" className="footer position-relative">
         <div className="container footer-top">
           <div className="row gy-4">
