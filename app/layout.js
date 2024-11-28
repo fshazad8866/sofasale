@@ -22,7 +22,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <meta name="google-adsense-account" content="ca-pub-8656809050578035">
+      <meta name="google-adsense-account" content="ca-pub-8656809050578035" />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
